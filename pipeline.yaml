@@ -1,0 +1,72 @@
+# https://github.com/slerpyyy/sh4der-jockey/blob/main/docs/readme_jp.md#fragment-%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC
+stages:
+  # other (ex: texture)
+  - fs: "shader/time.frag"
+    resolution: [1,1]
+    filter: nearest
+    float : true
+    target: "TimeTex"
+  - fs: "shader/flyer.frag"
+    resolution: [1080,1080]
+    # mipmap: true
+    target: "FlyerTex"
+  - fs: "shader/side_tekitou.frag"
+    resolution: [1280,360]
+    target: "SideTekitouTex"
+  # main pipeline
+  - fs: "shader/max3d.frag"
+    target: "Max3DSideTex"
+    resolution: [1280,360]
+  - fs: "shader/max3d.frag"
+    target: "Max3DMidTex"
+    resolution: [640,1080]
+  - fs: "shader/main3d.frag"
+    float: true
+    mipmap: true
+    target: "Main3DSideRawTex"
+    resolution: [1280,360]
+  - fs: "shader/main3d.frag"
+    float: true
+    mipmap: true
+    target: "Main3DMidRawTex"
+    resolution: [640,1080]
+  - fs: "shader/main3dDOF.frag"
+    target: "Main3DSideTex"
+    resolution: [1280,360]
+  - fs: "shader/main3dDOF.frag"
+    target: "Main3DMidTex"
+    resolution: [640,1080]
+  - fs: "shader/acid.frag"
+    resolution: [1280,360]
+    target: "AcidSideTex"
+  - fs: "shader/acid.frag"
+    resolution: [640,1080]
+    target: "AcidMidTex"
+  - fs: "shader/floor_display.frag"
+    resolution: [1280,360]
+  # unite pipeline
+    target: "FloorTex"
+  - fs: "shader/side_display.frag"
+    resolution: [1280,360]
+    target: "SideTex"
+  - fs: "shader/mid_display.frag"
+    resolution: [640,1080]
+    target: "MidTex"
+  - fs: "shader/unite.frag"
+    float : true
+    resolution: [1920,1080]
+    target: "UniteTex"
+  - fs: "shader/final_out.frag"
+    resolution: [1920,1080]
+
+ndi:
+  - source: "GirlTrain"
+    name: "GirlTrainTex"
+  - source: "Snow"
+    name: "SnowTex"
+
+images:
+  - path: "image/Myrica_msdf.png"
+    name: "FontTex"
+  - path: "image/Wiretap.png"
+    name: "WiretapTex"

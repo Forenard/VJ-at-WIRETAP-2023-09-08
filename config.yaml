@@ -1,0 +1,4 @@
+midi_devices:
+  - "MIDI Mix"
+  - "MPD218"
+audio_device: "Yamaha"
